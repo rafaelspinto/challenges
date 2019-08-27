@@ -1,0 +1,31 @@
+package challenges.flow;
+
+import flow.IApp;
+import flow.IEvent;
+
+import java.net.ProtocolException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class EmailApp implements IApp<String> {
+  private Queue<String> messages;
+
+  public EmailApp() {
+    this.messages = new LinkedList<String>();
+  }
+
+  public String in(IEvent event) throws Exception {
+    String message = (String) event.trigger();
+    if(!message.startsWith("MSG:")) {
+      throw new ProtocolException();
+    }
+
+    messages.add(message.replace("MSG:", ""));
+    return message;
+  }
+
+  public String popMessage() {
+    String message = messages.remove();
+    return message;
+  }
+}
