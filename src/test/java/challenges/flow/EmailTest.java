@@ -13,7 +13,7 @@ import java.util.Map;
 public class EmailTest {
 
   @Test
-  public void testRun_AdapterRespectsProtocol_AppHasHelloMessage() throws Exception {
+  public void testRun_AdapterIsCompliantWithProtocol_AppHasHelloMessage() throws Exception {
     IAgent user = new UserAgent();
     Map<String, IAdapter> adapters = new HashMap<String, IAdapter>();
     adapters.put("EMAIL", new EmailAdapter());
