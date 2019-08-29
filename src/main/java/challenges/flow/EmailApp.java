@@ -1,9 +1,7 @@
 package challenges.flow;
 
-import flow.IApp;
-import flow.IEvent;
+import flow.*;
 
-import java.net.ProtocolException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,7 +12,7 @@ public class EmailApp implements IApp<String> {
     this.messages = new LinkedList<String>();
   }
 
-  public String in(IEvent event) throws Exception {
+  public String in(IEvent event) throws EventException, ProtocolException, ActionException {
     String message = (String) event.trigger();
     if(!message.startsWith("MSG:")) {
       throw new ProtocolException();
